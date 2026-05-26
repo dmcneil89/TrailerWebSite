@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Apsley Trailer Repairs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0d1b2a;
+    --navy-mid: #162032;
+    --navy-card: #1c2b3a;
+    --navy-border: rgba(255,255,255,0.08);
+    --navy-border-hover: rgba(255,255,255,0.16);
+    --accent: #e8833a;
+    --accent-dim: rgba(232,131,58,0.15);
+    --accent-hover: #f09550;
+    --blue: #4a9edd;
+    --blue-dim: rgba(74,158,221,0.15);
+    --green: #4dbe8a;
+    --green-dim: rgba(77,190,138,0.15);
+    --red: #e05c5c;
+    --red-dim: rgba(224,92,92,0.15);
+    --amber: #f0b429;
+    --amber-dim: rgba(240,180,41,0.15);
+    --text: #e8edf2;
+    --text-mid: #9aafc4;
+    --text-dim: #5d7a96;
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* Background texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(ellipse 80% 60% at 10% -10%, rgba(232,131,58,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 90% 100%, rgba(74,158,221,0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── HEADER ────────────────────────────────── */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(13,27,42,0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--navy-border);
+    padding: 0 2rem;
+  }
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--accent);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 16px;
+  }
+  .logo-text {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.1;
+  }
+  .logo-sub {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--text-mid);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .header-actions { display: flex; gap: 10px; align-items: center; }
+  .btn-export {
+    background: transparent;
+    border: 1px solid var(--navy-border-hover);
+    border-radius: var(--radius-sm);
+    color: var(--text-mid);
+    padding: 7px 14px;
+    font-size: 13px;
+    font-family: var(--font-body);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+  }
+  .btn-export:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── MAIN ────────────────────────────────── */
+  main {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 4rem;
+  }
+
+  /* ── HERO ────────────────────────────────── */
+  .hero {
+    margin-bottom: 2.5rem;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero p { color: var(--text-mid); font-size: 15px; font-weight: 300; }
+
+  /* ── STATS ────────────────────────────────── */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 2rem;
+  }
+  @media (max-width: 700px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+  .stat-card {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--bar-color, var(--accent));
+    opacity: 0.7;
+  }
+  .stat-card:hover { border-color: var(--navy-border-hover); }
+  .stat-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .stat-value {
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .stat-icon {
+    position: absolute;
+    bottom: 12px;
+    right: 14px;
+    font-size: 22px;
+    opacity: 0.12;
+  }
+
+  /* ── TOOLBAR ────────────────────────────────── */
+  .toolbar {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .search-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 200px;
+  }
+  .search-wrap i {
+    position: absolute;
+    left: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-dim);
+    font-size: 14px;
+  }
+  .search-wrap input {
+    width: 100%;
+    padding: 9px 12px 9px 36px;
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 14px;
+    transition: border-color 0.2s;
+  }
+  .search-wrap input:focus { outline: none; border-color: var(--accent); }
+  .search-wrap input::placeholder { color: var(--text-dim); }
+
+  select {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 14px;
+    padding: 9px 12px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  select:focus { outline: none; border-color: var(--accent); }
+  select option { background: var(--navy-card); }
+
+  .btn-add {
+    background: var(--accent);
+    border: none;
+    border-radius: var(--radius-sm);
+    color: white;
+    padding: 9px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: var(--font-body);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s, transform 0.15s;
+    white-space: nowrap;
+  }
+  .btn-add:hover { background: var(--accent-hover); transform: translateY(-1px); }
+  .btn-add:active { transform: translateY(0); }
+
+  /* ── FILTERS ────────────────────────────────── */
+  .filter-tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .filter-tab {
+    background: transparent;
+    border: 1px solid var(--navy-border);
+    border-radius: 99px;
+    color: var(--text-mid);
+    padding: 5px 16px;
+    font-size: 13px;
+    font-family: var(--font-body);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .filter-tab:hover { border-color: var(--navy-border-hover); color: var(--text); }
+  .filter-tab.active { background: var(--accent); border-color: var(--accent); color: white; font-weight: 600; }
+
+  /* ── REPAIR CARDS ────────────────────────────────── */
+  .repairs-list { display: flex; flex-direction: column; gap: 10px; }
+
+  .repair-card {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    transition: border-color 0.2s, transform 0.15s;
+    animation: fadeSlide 0.25s ease both;
+    position: relative;
+  }
+  @keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .repair-card:hover { border-color: var(--navy-border-hover); transform: translateY(-1px); }
+  .repair-card.priority-high { border-left: 3px solid var(--red); }
+  .repair-card.priority-med { border-left: 3px solid var(--amber); }
+  .repair-card.priority-low { border-left: 3px solid var(--green); }
+
+  .cat-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .repair-body { flex: 1; min-width: 0; }
+  .repair-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 4px; }
+  .repair-title {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .badge {
+    font-size: 11px;
+    padding: 2px 10px;
+    border-radius: 99px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  .badge-open { background: var(--red-dim); color: var(--red); }
+  .badge-progress { background: var(--amber-dim); color: var(--amber); }
+  .badge-done { background: var(--green-dim); color: var(--green); }
+  .badge-cat { background: rgba(255,255,255,0.06); color: var(--text-mid); }
+
+  .repair-meta { font-size: 12px; color: var(--text-dim); margin-bottom: 6px; }
+  .repair-desc { font-size: 13px; color: var(--text-mid); line-height: 1.55; margin-bottom: 10px; font-style: italic; }
+
+  .repair-footer { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .cost-tag {
+    background: var(--accent-dim);
+    color: var(--accent);
+    border-radius: var(--radius-sm);
+    padding: 3px 10px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .cost-tag.zero { background: rgba(255,255,255,0.04); color: var(--text-dim); }
+
+  .card-actions { display: flex; gap: 6px; margin-left: auto; }
+  .btn-icon {
+    background: transparent;
+    border: 1px solid var(--navy-border);
+    border-radius: var(--radius-sm);
+    color: var(--text-dim);
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s;
+  }
+  .btn-icon:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-icon.danger:hover { border-color: var(--red); color: var(--red); }
+
+  /* ── EMPTY STATE ────────────────────────────────── */
+  .empty {
+    text-align: center;
+    padding: 4rem 1rem;
+    color: var(--text-dim);
+  }
+  .empty i { font-size: 48px; opacity: 0.3; display: block; margin-bottom: 12px; }
+  .empty p { font-size: 15px; }
+
+  /* ── MODAL ────────────────────────────────── */
+  .modal-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(4px);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .modal-backdrop.open { display: flex; }
+  .modal {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border-hover);
+    border-radius: var(--radius);
+    padding: 2rem;
+    width: 100%;
+    max-width: 560px;
+    box-shadow: var(--shadow);
+    animation: modalIn 0.22s ease;
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.96) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+  .modal-header h2 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .btn-close {
+    background: transparent;
+    border: 1px solid var(--navy-border);
+    border-radius: var(--radius-sm);
+    color: var(--text-mid);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all 0.2s;
+  }
+  .btn-close:hover { border-color: var(--red); color: var(--red); }
+
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 500px) { .form-grid { grid-template-columns: 1fr; } }
+  .form-group { display: flex; flex-direction: column; gap: 5px; }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-group label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-dim); font-weight: 500; }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: var(--navy);
+    border: 1px solid var(--navy-border);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 14px;
+    padding: 9px 12px;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { outline: none; border-color: var(--accent); }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: var(--text-dim); }
+  .form-group textarea { resize: vertical; min-height: 80px; }
+  .form-group select option { background: var(--navy); }
+
+  .modal-footer {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 1.75rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--navy-border);
+  }
+  .btn-cancel {
+    background: transparent;
+    border: 1px solid var(--navy-border-hover);
+    border-radius: var(--radius-sm);
+    color: var(--text-mid);
+    padding: 9px 20px;
+    font-size: 14px;
+    font-family: var(--font-body);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-cancel:hover { border-color: var(--text-mid); color: var(--text); }
+  .btn-save {
+    background: var(--accent);
+    border: none;
+    border-radius: var(--radius-sm);
+    color: white;
+    padding: 9px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: var(--font-body);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-save:hover { background: var(--accent-hover); }
+
+  /* ── TOAST ────────────────────────────────── */
+  .toast {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--navy-card);
+    border: 1px solid var(--green);
+    border-radius: var(--radius-sm);
+    color: var(--green);
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 999;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.3s;
+    pointer-events: none;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* ── SCROLLBAR ────────────────────────────────── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 3px; }
+
+  @media (max-width: 600px) {
+    main { padding: 1.5rem 1rem 3rem; }
+    .toolbar { flex-direction: column; }
+    .search-wrap { width: 100%; }
+    .repair-card { flex-direction: column; }
+    .card-actions { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="logo" href="#">
+      <div class="logo-icon"><i class="fa-solid fa-caravan"></i></div>
+      <div>
+        <div class="logo-text">Trailer Repairs</div>
+        <div class="logo-sub">Apsley, Ontario</div>
+      </div>
+    </a>
+    <div class="header-actions">
+      <button class="btn-export" onclick="exportCSV()"><i class="fa-solid fa-download"></i> Export CSV</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <h1>Your <span>repair log</span><br>at a glance</h1>
+    <p>Track every fix, upgrade, and maintenance job on your travel trailer.</p>
+  </div>
+
+  <div class="stats-grid" id="statsGrid"></div>
+
+  <div class="toolbar">
+    <div class="search-wrap">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="searchInput" placeholder="Search repairs, notes, categories…" oninput="render()" />
+    </div>
+    <select id="catFilter" onchange="render()">
+      <option value="">All categories</option>
+      <option>Plumbing</option>
+      <option>Electrical</option>
+      <option>Roof / exterior</option>
+      <option>Appliances</option>
+      <option>Structural</option>
+      <option>Tires / suspension</option>
+      <option>Heating / cooling</option>
+      <option>Other</option>
+    </select>
+    <select id="sortBy" onchange="render()">
+      <option value="priority">Sort: Priority</option>
+      <option value="date-desc">Sort: Newest</option>
+      <option value="date-asc">Sort: Oldest</option>
+      <option value="cost">Sort: Highest cost</option>
+    </select>
+    <button class="btn-add" onclick="openModal()"><i class="fa-solid fa-plus"></i> Add repair</button>
+  </div>
+
+  <div class="filter-tabs" id="filterTabs"></div>
+
+  <div class="repairs-list" id="repairsList"></div>
+</main>
+
+<!-- Modal -->
+<div class="modal-backdrop" id="modalBackdrop" onclick="handleBackdropClick(event)">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-header">
+      <h2 id="modalTitle">Log a repair</h2>
+      <button class="btn-close" onclick="closeModal()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="form-grid">
+      <div class="form-group full">
+        <label>Title *</label>
+        <input type="text" id="fTitle" placeholder="e.g. Roof seam resealed above rear window" />
+      </div>
+      <div class="form-group">
+        <label>Category</label>
+        <select id="fCat">
+          <option>Plumbing</option><option>Electrical</option><option>Roof / exterior</option>
+          <option>Appliances</option><option>Structural</option><option>Tires / suspension</option>
+          <option>Heating / cooling</option><option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Status</label>
+        <select id="fStatus">
+          <option value="open">Open</option>
+          <option value="progress">In progress</option>
+          <option value="done">Done</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Date</label>
+        <input type="date" id="fDate" />
+      </div>
+      <div class="form-group">
+        <label>Cost (CAD $)</label>
+        <input type="number" id="fCost" placeholder="0.00" min="0" step="0.01" />
+      </div>
+      <div class="form-group">
+        <label>Priority</label>
+        <select id="fPriority">
+          <option value="high">High</option>
+          <option value="med" selected>Medium</option>
+          <option value="low">Low</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Done by</label>
+        <input type="text" id="fBy" placeholder="Self / contractor name" />
+      </div>
+      <div class="form-group full">
+        <label>Notes</label>
+        <textarea id="fNotes" placeholder="Parts used, symptoms, measurements, warranty info…"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-save" onclick="saveRepair()"><i class="fa-solid fa-floppy-disk"></i> Save repair</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const CAT_META = {
+  'Plumbing':        { icon: 'fa-droplet',         bg: 'rgba(74,158,221,0.15)',  color: '#4a9edd' },
+  'Electrical':      { icon: 'fa-bolt',             bg: 'rgba(240,180,41,0.15)', color: '#f0b429' },
+  'Roof / exterior': { icon: 'fa-house-chimney',    bg: 'rgba(77,190,138,0.15)', color: '#4dbe8a' },
+  'Appliances':      { icon: 'fa-blender',          bg: 'rgba(232,131,58,0.15)', color: '#e8833a' },
+  'Structural':      { icon: 'fa-hammer',           bg: 'rgba(157,161,167,0.15)',color: '#9da1a7' },
+  'Tires / suspension':{ icon:'fa-circle-notch',   bg: 'rgba(77,190,138,0.15)', color: '#4dbe8a' },
+  'Heating / cooling':{ icon:'fa-temperature-half', bg: 'rgba(224,92,92,0.15)', color: '#e05c5c' },
+  'Other':           { icon: 'fa-wrench',           bg: 'rgba(157,161,167,0.15)',color: '#9da1a7' }
+};
+
+const PRIORITY_COLOR = { high: '#e05c5c', med: '#f0b429', low: '#4dbe8a' };
+
+let repairs = JSON.parse(localStorage.getItem('apsleyTrailerRepairs') || 'null') || [
+  { id:1, title:'Water pump pressure switch replaced', cat:'Plumbing', status:'done', date:'2025-08-10', cost:85, priority:'high', by:'Self', notes:'Old switch was intermittent. Replaced with Shurflo 94-591-02. Running smoothly now.' },
+  { id:2, title:'Roof vent seal cracked — resealed', cat:'Roof / exterior', status:'done', date:'2025-09-04', cost:40, priority:'med', by:'Self', notes:'Used Dicor self-leveling sealant around all four roof vents. No leaks since.' },
+  { id:3, title:'Shore power 30A plug corroded', cat:'Electrical', status:'progress', date:'2026-03-15', cost:0, priority:'high', by:'', notes:'Plug contacts show heavy oxidation. Need to replace pedestal-end plug before next season.' },
+  { id:4, title:'Furnace ignitor not lighting', cat:'Heating / cooling', status:'open', date:'2026-05-20', cost:0, priority:'high', by:'', notes:'Propane furnace clicks but does not ignite. Possible dirty ignitor electrode or faulty sail switch.' }
+];
+let nextId = Math.max(...repairs.map(r => r.id), 0) + 1;
+let editId = null;
+let activeStatus = 'all';
+
+function save() { localStorage.setItem('apsleyTrailerRepairs', JSON.stringify(repairs)); }
+
+function fmtDate(d) {
+  if (!d) return '—';
+  const [y, m, day] = d.split('-');
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return `${parseInt(day)} ${months[parseInt(m)-1]} ${y}`;
+}
+
+function fmtCost(c) {
+  if (!c || c == 0) return null;
+  return '$' + parseFloat(c).toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+function renderStats() {
+  const total = repairs.length;
+  const open = repairs.filter(r => r.status === 'open').length;
+  const prog = repairs.filter(r => r.status === 'progress').length;
+  const spent = repairs.filter(r => r.status === 'done').reduce((a, r) => a + (parseFloat(r.cost) || 0), 0);
+  const stats = [
+    { label: 'Total repairs', value: total, color: '#4a9edd', icon: 'fa-list-check' },
+    { label: 'Open issues', value: open, color: open > 0 ? '#e05c5c' : '#4dbe8a', icon: 'fa-circle-exclamation' },
+    { label: 'In progress', value: prog, color: prog > 0 ? '#f0b429' : '#4dbe8a', icon: 'fa-rotate' },
+    { label: 'Total spent', value: '$' + Math.round(spent).toLocaleString('en-CA'), color: '#e8833a', icon: 'fa-dollar-sign' }
+  ];
+  document.getElementById('statsGrid').innerHTML = stats.map(s => `
+    <div class="stat-card" style="--bar-color:${s.color}">
+      <div class="stat-label">${s.label}</div>
+      <div class="stat-value" style="color:${s.color}">${s.value}</div>
+      <i class="stat-icon fa-solid ${s.icon}"></i>
+    </div>
+  `).join('');
+}
+
+function renderTabs() {
+  const counts = {
+    all: repairs.length,
+    open: repairs.filter(r => r.status === 'open').length,
+    progress: repairs.filter(r => r.status === 'progress').length,
+    done: repairs.filter(r => r.status === 'done').length
+  };
+  const tabs = [
+    { id: 'all', label: `All (${counts.all})` },
+    { id: 'open', label: `Open (${counts.open})` },
+    { id: 'progress', label: `In progress (${counts.progress})` },
+    { id: 'done', label: `Done (${counts.done})` }
+  ];
+  document.getElementById('filterTabs').innerHTML = tabs.map(t => `
+    <button class="filter-tab ${activeStatus === t.id ? 'active' : ''}" onclick="setTab('${t.id}')">${t.label}</button>
+  `).join('');
+}
+
+function setTab(t) { activeStatus = t; render(); }
+
+function render() {
+  renderStats();
+  renderTabs();
+  const q = (document.getElementById('searchInput').value || '').toLowerCase();
+  const cat = document.getElementById('catFilter').value;
+  const sort = document.getElementById('sortBy').value;
+
+  let list = repairs.filter(r => {
+    if (activeStatus !== 'all' && r.status !== activeStatus) return false;
+    if (cat && r.cat !== cat) return false;
+    if (q && !(r.title.toLowerCase().includes(q) || (r.notes || '').toLowerCase().includes(q) || r.cat.toLowerCase().includes(q))) return false;
+    return true;
+  });
+
+  const pOrder = { high: 0, med: 1, low: 2 };
+  if (sort === 'priority') {
+    list.sort((a, b) => {
+      if (a.status === 'done' && b.status !== 'done') return 1;
+      if (b.status === 'done' && a.status !== 'done') return -1;
+      return (pOrder[a.priority] || 1) - (pOrder[b.priority] || 1);
+    });
+  } else if (sort === 'date-desc') {
+    list.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+  } else if (sort === 'date-asc') {
+    list.sort((a, b) => (a.date || '').localeCompare(b.date || ''));
+  } else if (sort === 'cost') {
+    list.sort((a, b) => (parseFloat(b.cost) || 0) - (parseFloat(a.cost) || 0));
+  }
+
+  const el = document.getElementById('repairsList');
+  if (!list.length) {
+    el.innerHTML = `<div class="empty"><i class="fa-solid fa-toolbox"></i><p>No repairs found. Add one to get started!</p></div>`;
+    return;
+  }
+
+  el.innerHTML = list.map(r => {
+    const cm = CAT_META[r.cat] || CAT_META['Other'];
+    const bCls = r.status === 'done' ? 'badge-done' : r.status === 'progress' ? 'badge-progress' : 'badge-open';
+    const bLabel = r.status === 'done' ? 'Done' : r.status === 'progress' ? 'In progress' : 'Open';
+    const cost = fmtCost(r.cost);
+    return `
+      <div class="repair-card priority-${r.priority || 'med'}">
+        <div class="cat-icon" style="background:${cm.bg};color:${cm.color}">
+          <i class="fa-solid ${cm.icon}"></i>
+        </div>
+        <div class="repair-body">
+          <div class="repair-top">
+            <span class="repair-title">${r.title}</span>
+            <span class="badge ${bCls}">${bLabel}</span>
+            <span class="badge badge-cat">${r.cat}</span>
+          </div>
+          <div class="repair-meta">${r.date ? 'Logged ' + fmtDate(r.date) : ''}${r.by ? ' &middot; ' + r.by : ''} &middot; <span style="color:${PRIORITY_COLOR[r.priority||'med']};font-weight:600">${(r.priority||'med').charAt(0).toUpperCase()+(r.priority||'med').slice(1)} priority</span></div>
+          ${r.notes ? `<div class="repair-desc">${r.notes}</div>` : ''}
+          <div class="repair-footer">
+            <span class="cost-tag ${!cost ? 'zero' : ''}">${cost || 'No cost logged'}</span>
+            <div class="card-actions">
+              <button class="btn-icon" title="Edit repair" onclick="editRepair(${r.id})"><i class="fa-solid fa-pen-to-square"></i></button>
+              <button class="btn-icon danger" title="Delete repair" onclick="deleteRepair(${r.id})"><i class="fa-solid fa-trash"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function openModal(id) {
+  editId = id || null;
+  document.getElementById('modalTitle').textContent = editId ? 'Edit repair' : 'Log a repair';
+  if (editId) {
+    const r = repairs.find(x => x.id === editId);
+    document.getElementById('fTitle').value = r.title;
+    document.getElementById('fCat').value = r.cat;
+    document.getElementById('fStatus').value = r.status;
+    document.getElementById('fDate').value = r.date || '';
+    document.getElementById('fCost').value = r.cost || '';
+    document.getElementById('fPriority').value = r.priority || 'med';
+    document.getElementById('fBy').value = r.by || '';
+    document.getElementById('fNotes').value = r.notes || '';
+  } else {
+    document.getElementById('fTitle').value = '';
+    document.getElementById('fDate').value = new Date().toISOString().slice(0, 10);
+    document.getElementById('fCost').value = '';
+    document.getElementById('fPriority').value = 'med';
+    document.getElementById('fBy').value = '';
+    document.getElementById('fNotes').value = '';
+    document.getElementById('fStatus').value = 'open';
+    document.getElementById('fCat').value = 'Plumbing';
+  }
+  document.getElementById('modalBackdrop').classList.add('open');
+  setTimeout(() => document.getElementById('fTitle').focus(), 100);
+}
+
+function closeModal() {
+  document.getElementById('modalBackdrop').classList.remove('open');
+}
+
+function handleBackdropClick(e) {
+  if (e.target === document.getElementById('modalBackdrop')) closeModal();
+}
+
+function editRepair(id) { openModal(id); }
+
+function deleteRepair(id) {
+  if (!confirm('Delete this repair record? This cannot be undone.')) return;
+  repairs = repairs.filter(r => r.id !== id);
+  save(); render();
+  showToast('Repair deleted.');
+}
+
+function saveRepair() {
+  const title = document.getElementById('fTitle').value.trim();
+  if (!title) { document.getElementById('fTitle').focus(); return; }
+  const rec = {
+    id: editId || nextId++,
+    title,
+    cat: document.getElementById('fCat').value,
+    status: document.getElementById('fStatus').value,
+    date: document.getElementById('fDate').value,
+    cost: parseFloat(document.getElementById('fCost').value) || 0,
+    priority: document.getElementById('fPriority').value,
+    by: document.getElementById('fBy').value.trim(),
+    notes: document.getElementById('fNotes').value.trim()
+  };
+  if (editId) { repairs = repairs.map(r => r.id === editId ? rec : r); }
+  else { repairs.push(rec); }
+  save(); closeModal(); render();
+  showToast(editId ? 'Repair updated.' : 'Repair logged!');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+function exportCSV() {
+  const header = ['Title', 'Category', 'Status', 'Date', 'Cost (CAD)', 'Priority', 'Done by', 'Notes'];
+  const rows = repairs.map(r => [
+    `"${(r.title||'').replace(/"/g,'""')}"`,
+    `"${r.cat||''}"`,
+    r.status,
+    r.date||'',
+    r.cost||0,
+    r.priority||'med',
+    `"${(r.by||'').replace(/"/g,'""')}"`,
+    `"${(r.notes||'').replace(/"/g,'""')}"`
+  ].join(','));
+  const csv = [header.join(','), ...rows].join('\n');
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'apsley-trailer-repairs.csv';
+  a.click(); URL.revokeObjectURL(url);
+  showToast('CSV exported!');
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+render();
+</script>
+</body>
+</html>
